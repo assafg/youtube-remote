@@ -36,15 +36,13 @@ app.configure('development', function () {
 
 app.get('/api/youtube/search/:query', youtube.search);
 
-app.post('/api/login', routes.login);
-
 app.post('/api/play', function(req, res){
-    var user = req.body.user,
+    var pairKey = req.body.pairKey,
         videoId  = req.body.videoId;
 
-    var socket = socketUsers[user];
+    var socket = socketUsers[pairKey];
     if(!socket){
-        return res.send(403, 'Login required');
+        return res.send('Other side not connected');
     }
     socket.emit('play', {videoId: videoId});
 });
@@ -56,19 +54,17 @@ var server = http.createServer(app).listen(app.get('port'), function () {
 /*
 Socket.IO
  */
-var io = require('socket.io').listen(server),
-    SessionSockets = require('session.socket.io')
-    , sessionSockets = new SessionSockets(io, sessionStore, cookieParser);
+var io = require('socket.io').listen(server);
 
-sessionSockets.on('connection', function (err, socket, session) {
+io.sockets.on('connection', function (socket) {
+    var key = parseInt(Math.random()*9000+1000);
+    console.log('Connecting key: '+key);
 
-    socket.emit('user', session.user);
+    socket.emit('localKey', key);
 
-    socketUsers[session.user] = socket;
+    socketUsers[key] = socket;
 
-    socket.on('foo', function(value) {
-        session.foo = value;
-        session.save();
-        socket.emit('session', session);
+    socket.on('disconnect', function () {
+        delete socketUsers[key];
     });
 });

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('youtubeRemoteApp', [])
+angular.module('youtubeRemoteApp', ['ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
@@ -19,7 +19,13 @@ angular.module('youtubeRemoteApp', [])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/welcome', {
+        templateUrl: 'views/welcome.html',
+        controller: 'WelcomeCtrl'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/welcome'
       });
-  });
+  }).run(function(Socket){
+
+    });
