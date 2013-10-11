@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('youtubeRemoteApp')
-    .controller('RemoteCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('RemoteCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
     $scope.searchTerm = '';
 
     $scope.items;
@@ -16,7 +16,10 @@ angular.module('youtubeRemoteApp')
     }
 
     $scope.play = function(id){
-        alert(id);
+        $http.post('/api/play', {user: $rootScope.user, videoId: id}).
+            success(function(){
+               alert('playing video');
+            });
     }
 
 }]);

@@ -81,7 +81,12 @@ module.exports = function (grunt) {
             },
             proxies:[
                 {
-                    context:'/youtube',
+                    context:'/api',
+                    host:'localhost',
+                    port:3000
+                },
+                {
+                    context:'/socket.io',
                     host:'localhost',
                     port:3000
                 }

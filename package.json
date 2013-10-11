@@ -1,7 +1,13 @@
 {
   "name": "youtube-remote",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "socket.io": "~0.9.16",
+    "passport": "~0.1.17",
+    "connect": "~2.9.0",
+    "session.socket.io": "~0.1.6",
+    "passport-local": "~0.1.6"
+  },
   "devDependencies": {
     "express": "~3.3.4",
     "grunt": "~0.4.1",
