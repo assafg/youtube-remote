@@ -6,7 +6,8 @@
     "passport": "~0.1.17",
     "connect": "~2.9.0",
     "session.socket.io": "~0.1.6",
-    "passport-local": "~0.1.6"
+    "passport-local": "~0.1.6",
+    "optimist": "~0.6.0"
   },
   "devDependencies": {
     "express": "~3.3.4",
@@ -53,6 +54,8 @@
     "node": ">=0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
-  }
+    "test": "grunt test",
+    "start": "node server.js"
+  },
+  "subdomain": "youtube-remote"
 }
