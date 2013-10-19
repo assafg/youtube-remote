@@ -1,0 +1,24 @@
+<div class="well well-large" data-ng-show="!connected">
+      <div>Player Key: <b>{{localKey}}</b></div>
+</div>
+
+<div id="player"></div>
+
+<script>
+    // Load the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Replace the 'ytplayer' element with an <iframe> and
+    // YouTube player after the API code downloads.
+    var player;
+    function onYouTubePlayerAPIReady() {
+        player = new YT.Player('player', {
+            width: $('#player').width()* 0.9,
+            height: Math.max($('#player').width()*9/16, $(document).height()) * 0.9,
+            playerVars: { 'autoplay': 1 }
+        });
+    }
+</script>

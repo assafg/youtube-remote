@@ -27,7 +27,7 @@ app.configure(function () {
     app.use(cookieParser);
     app.use(express.session({ store:sessionStore }));
     app.use(app.router);
-    app.use(express.static(path.join(__dirname, 'dist')));
+    app.use(express.static(path.join(__dirname, 'client', 'dist')));
 });
 
 app.configure('development', function () {
