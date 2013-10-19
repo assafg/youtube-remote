@@ -1,0 +1,9 @@
+npm install -g yo
+npm install generator-express
+npm install generator-angular
+
+add express dependency
+add ejs dependency
+npm install ejs --save-dev
+npm install grunt-connect-proxy --save-dev
+
