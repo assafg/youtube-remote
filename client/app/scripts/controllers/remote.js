@@ -14,8 +14,8 @@ angular.module('youtubeRemoteApp')
 
     $scope.searchYoutube = function () {
 
-        $http.jsonp('https://www.googleapis.com/youtube/v3/search?key=AIzaSyBL6PS3qcjaI4KSCrysejNsFHNQkHtXShs&part=snippet&q=' +
-                 $scope.searchTerm+ '&callback=JSON_CALLBACK').
+        $http.get('/api/youtube/search/' +
+                 $scope.searchTerm).
         success(function(data){
                 $scope.items = data.items;
             })

@@ -5,7 +5,6 @@
 var express = require('express')
     , connect = require('connect')
     , routes = require('./routes')
-    , youtube = require('./routes/youtube')
     , http = require('http')
     , path = require('path');
 
@@ -34,7 +33,7 @@ app.configure('development', function () {
     app.use(express.errorHandler());
 });
 
-app.get('/api/youtube/search/:query', youtube.search);
+app.get('/api/youtube/search/:query', routes.search);
 
 app.post('/api/play', function(req, res){
     var pairKey = req.body.pairKey,
